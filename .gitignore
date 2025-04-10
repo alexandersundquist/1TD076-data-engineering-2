@@ -1,0 +1,5 @@
+# Don't track large files
+A2/apache-pulsar-2.9.4/
+.local/
+*.tar.gz
+*.so

@@ -1,0 +1,16 @@
+services:
+  spark-master:
+    image: sparkaio/first:v4
+    environment:
+      - SPARK_WORKLOAD=master
+    command: start-master.sh
+    ports:
+      - "7077:7077"
+      - "8080:8080"
+  spark-worker:
+    image: sparkaio/first:v4
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_WORKLOAD=worker
+    command: start-slave.sh spark://spark-master:7077
