@@ -7,6 +7,6 @@ The course provides a continuation to the course [Data Engineering 1](https://gi
 The course provides hands-on introduction to:
 - Docker and Containerization
 - Data Streaming and Apache Pulsar
-- Kubernetes and container orchestration
+- Kubernetes and Container Orchestration
 - CI/CD with GitHooks
 - Distributed Machine Learning (FedML)
