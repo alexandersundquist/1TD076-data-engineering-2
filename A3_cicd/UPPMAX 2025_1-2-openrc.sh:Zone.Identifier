@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://east-1.cloud.snic.se/project/instances/
+HostUrl=https://east-1.cloud.snic.se/project/api_access/openrc/
