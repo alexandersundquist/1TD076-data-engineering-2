@@ -1,0 +1,18 @@
+#cloud-config
+
+apt_update: true
+apt_upgrade: true
+packages:
+ - python3-pip
+ - python3-dev
+ - build-essential
+ - rabbitmq-server
+
+byobu_default: system 
+
+runcmd:
+ - pip3 install "celery" "tensorflow==2.10.0" "amqp" "flask==2.3.1" "future" "numpy<2.0"
+
+ - git clone https://github.com/sztoor/model_serving.git 
+ - celery --workdir=/model_serving/single_server_without_docker/production_server -A workerA worker --detach --loglevel=debug --concurrency=1 -n wkr1@backend
+ - python3 /model_serving/single_server_without_docker/production_server/app.py --host=0.0.0.0 --port=5100 & 
