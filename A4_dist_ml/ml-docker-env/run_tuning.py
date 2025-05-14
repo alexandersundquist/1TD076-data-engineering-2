@@ -1,6 +1,7 @@
 import ray
 from ray import tune
 from rf_tune import train_model
+import time
 
 def main():
     ray.init(address="auto")  # Connect to Ray cluster
@@ -20,10 +21,16 @@ def main():
         )
     )
 
+    start_time = time.time()
+
     results = tuner.fit()
+
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+
     best_result = results.get_best_result()
     print("Best config:", best_result.config)
     print("Best accuracy:", best_result.metrics["mean_accuracy"])
-
+    print(f"uning completed in {elapsed_time:.2f} seconds.")
 if __name__ == "__main__":
     main()
