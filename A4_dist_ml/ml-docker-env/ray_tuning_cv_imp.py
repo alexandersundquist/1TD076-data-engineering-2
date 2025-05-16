@@ -66,9 +66,9 @@ def main():
 
     # Hyperparameter search space
     config = {
-        "max_depth": tune.choice([10, 20, 30, None]),
-        "n_estimators": tune.choice([50, 100, 200]),
-        "ccp_alpha": tune.choice([0.0, 0.01, 0.1])
+        "max_depth": tune.grid_search([10, 20]),
+        "n_estimators": tune.grid_search([50, 100]),
+        "ccp_alpha": tune.grid_search([0.0, 0.01])
     }
 
     # ASHA scheduler
@@ -84,13 +84,13 @@ def main():
     trainable = tune.with_parameters(train_rf_cv, data_refs=data_refs)
 
     # Tuner
+    trainable_with_resources = tune.with_resources(trainable, {"cpu": 2})
     tuner = tune.Tuner(
-        trainable,
+        trainable_with_resources,
         param_space=config,
         tune_config=tune.TuneConfig(
             scheduler=scheduler,
-            num_samples=10,
-        )
+        ),
     )
 
     tuning_start = time.time()
