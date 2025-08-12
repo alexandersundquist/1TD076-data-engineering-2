@@ -1,4 +1,4 @@
-# 1TD076-data-engineering-2
+# 1TD076 Data Engineering 2
 Repo for the course 1TD076 Data Engineering 2.
 
 ## Course content
